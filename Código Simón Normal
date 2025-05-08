@@ -1,0 +1,52 @@
+input.onButtonPressed(Button.A, function () {
+    ncasillas += 1
+    anadirnumero(ncasillas)
+    iluminarLeds()
+})
+function iluminarLeds () {
+    for (let i = 0; i <= numerosAleatorios.length - 1; i++) {
+        led2 = numerosAleatorios[i]
+        basic.showString("" + (led2))
+        if (led2 == 1) {
+            pins.digitalWritePin(DigitalPin.P16, 1)
+            basic.pause(1000)
+            pins.digitalWritePin(DigitalPin.P16, 0)
+        }
+        if (led2 == 2) {
+            pins.digitalWritePin(DigitalPin.P15, 1)
+            basic.pause(1000)
+            pins.digitalWritePin(DigitalPin.P15, 0)
+        }
+        if (led2 == 3) {
+            pins.digitalWritePin(DigitalPin.P14, 1)
+            basic.pause(1000)
+            pins.digitalWritePin(DigitalPin.P14, 0)
+        }
+        if (led2 == 4) {
+            pins.digitalWritePin(DigitalPin.P13, 1)
+            basic.pause(1000)
+            pins.digitalWritePin(DigitalPin.P13, 0)
+        }
+    }
+}
+function anadirnumero (núm: number) {
+    temp = randint(1, 4)
+    numerosAleatorios.push(temp)
+}
+let temp = 0
+let led2 = 0
+let numerosAleatorios: number[] = []
+let ncasillas = 0
+basic.showString("3")
+basic.showString("2")
+basic.showString("1")
+basic.showString("GO")
+ncasillas = 1
+let codigo = ""
+basic.forever(function () {
+    if (pins.digitalReadPin(DigitalPin.P0) == 1) {
+        pins.digitalWritePin(DigitalPin.P16, 1)
+        basic.pause(100)
+        pins.digitalWritePin(DigitalPin.P16, 0)
+    }
+})
